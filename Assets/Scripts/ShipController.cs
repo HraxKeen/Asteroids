@@ -3,71 +3,35 @@ using System.Collections;
  
 public class ShipController : MonoBehaviour {
  
-    float rotationSpeed = 100.0f;
-    float thrustForce = 3f;
- 
-    public AudioClip crash;
-    //public AudioClip shoot;
- 
-    //public GameObject bullet;
- 
-    private GameController gameController;
- 
-    void Start(){
-        // Get a reference to the game controller object and the script
-        GameObject gameControllerObject =
-            GameObject.FindWithTag ("GameController");
- 
-        gameController =
-            gameControllerObject.GetComponent <GameController>();
-    }
- 
-    void FixedUpdate () {
- 
-        // Rotate the ship if necessary
-        transform.Rotate(0, 0, -Input.GetAxis("Horizontal")*
-            rotationSpeed * Time.deltaTime);
- 
-        // Thrust the ship if necessary
-        GetComponent<Rigidbody2D>().
-            AddForce(transform.up * thrustForce *
-                Input.GetAxis("Vertical"));
- 
-        // Has a bullet been fired
-        /*if(Input.GetKeyDown(KeyCode.JoystickButton0))
-        {
-            ShootBullet();   
-        }*/
-            
- 
-    }
- 
-    void OnTriggerEnter2D(Collider2D collider)
+    [SerializeField] float thrust = 2f;
+    [SerializeField] float momentum = 2f;
+    [SerializeField] float maxVelocity = 1.0f;
+    [SerializeField] float maxAngularVelocity = 20.0f;
+    Rigidbody2D rb;
+    // Start is called before the first frame update
+    void Start()
     {
-        // Anything except a bullet is an asteroid
-        if (collider.gameObject.tag != "Bullet") 
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        float thrustInput = Input.GetAxis("Vertical");
+        if (thrustInput > 0)
+            rb.AddForce(transform.up * thrust * thrustInput);
+        rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxVelocity);
+
+        float rotateInput = -Input.GetAxis("Horizontal");
+        if (Mathf.Abs(rb.angularVelocity) < maxAngularVelocity)
         {
- 
-            AudioSource.PlayClipAtPoint
-                (crash, Camera.main.transform.position);
- 
-            // Move the ship to the centre of the screen
-            transform.position = new Vector3 (0, 0, 0); 
- 
-            // Remove all velocity from the ship
-            GetComponent<Rigidbody2D>().
-                velocity = new Vector3 (0, 0, 0);
- 
-            gameController.DecrementLives();
+            rb.AddTorque(rotateInput * momentum);
+        } else {
+            rb.angularVelocity = Mathf.Clamp(
+                rb.angularVelocity,
+                -maxAngularVelocity,
+                maxAngularVelocity);
         }
     }
- 
-    /*void ShootBullet(){
- 
-        // Spawn a bullet
-        Instantiate(bullet,new Vector3(transform.position.x,transform.position.y, 0),transform.rotation);
- 
-        // Play a shoot sound
-        AudioSource.PlayClipAtPoint (shoot, Camera.main.transform.position);
-    }*/
+
 }

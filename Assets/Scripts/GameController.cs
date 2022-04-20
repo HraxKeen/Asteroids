@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour {
     private int asteroidsRemaining;
     private int lives;
     private int wave;
-    private int increaseEachWave = 4;
+    private int increaseEachWave = 2;
  
     public Text scoreText;
     public Text livesText;
@@ -19,23 +19,22 @@ public class GameController : MonoBehaviour {
     public Text hiscoreText;
  
     // Use this for initialization
-    void Start () {
- 
+    void Start () 
+    {
         hiscore = PlayerPrefs.GetInt ("hiscore", 0);
         BeginGame ();
     }
  
     // Update is called once per frame
-    void Update () {
- 
+    void Update () 
+    {
         // Quit if player presses escape
         if (Input.GetKey("escape"))
             Application.Quit();
- 
     }
  
-    void BeginGame(){
- 
+    void BeginGame()
+    {
         score = 0;
         lives = 3;
         wave = 1;
@@ -113,7 +112,7 @@ public class GameController : MonoBehaviour {
         // - big one
         // + 3 little ones
         // = 2
-        asteroidsRemaining+=2;
+        asteroidsRemaining += 2;
  
     }
  

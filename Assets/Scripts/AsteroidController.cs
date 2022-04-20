@@ -9,7 +9,8 @@ public class AsteroidController : MonoBehaviour {
     private GameController gameController;
  
     // Use this for initialization
-    void Start () {
+    void Start () 
+    {
  
         // Get a reference to the game controller object and the script
         GameObject gameControllerObject =
@@ -28,15 +29,18 @@ public class AsteroidController : MonoBehaviour {
  
     }
  
-    void OnCollisionEnter2D(Collision2D c){
+    private void OnCollisionEnter2D(Collision2D other)
+    {
  
-        if (c.gameObject.tag.Equals("Bullet")) {
+        if (other.gameObject.tag.Equals("Bullet")) 
+        {
  
             // Destroy the bullet
-            Destroy (c.gameObject);
- 
-            // If large asteroid spawn new ones
-            if (tag.Equals ("Large Asteroid")) {
+            Destroy (other.gameObject);
+
+        // If large asteroid spawn new ones
+            if (tag.Equals ("Large Asteroid")) 
+            {
                 // Spawn small asteroids
                 Instantiate (smallAsteroid,
                     new Vector3 (transform.position.x - .5f,
@@ -71,8 +75,8 @@ public class AsteroidController : MonoBehaviour {
  
             // Destroy the current asteroid
             Destroy (gameObject);
- 
         }
+        
  
     }
-}
+} 

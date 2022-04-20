@@ -10,7 +10,7 @@ public class BulletController : MonoBehaviour {
  
         // Push the bullet in the direction it is facing
         GetComponent<Rigidbody2D>()
-            .AddForce(transform.up * 350);
+            .AddForce(transform.up * 500);
     }
  
 }
