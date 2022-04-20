@@ -1,23 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-public class BulletController : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Destroys bullet after 1sec
+using System.Collections;
+ 
+public class BulletController : MonoBehaviour {
+ 
+    // Use this for initialization
+    void Start () {
+        // Set the bullet to destroy itself after 1 seconds
         Destroy (gameObject, 1.0f);
-
-        //Pushes bullet in direction it is facing
+ 
+        // Push the bullet in the direction it is facing
         GetComponent<Rigidbody2D>()
-            .AddForce(transform.up * 400);
+            .AddForce(transform.up * 350);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+ 
 }

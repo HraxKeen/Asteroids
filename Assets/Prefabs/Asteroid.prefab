@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 1120010702690765177}
   - component: {fileID: 466435052173858530}
   - component: {fileID: 4350333403002348765}
+  - component: {fileID: -2365672175920855053}
+  - component: {fileID: 7068584676103585956}
   m_Layer: 0
-  m_Name: Asteroid
-  m_TagString: Large Asteroid
+  m_Name: asteroid
+  m_TagString: Large Asteroids
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7620159062514109889}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.6295, y: 2.6962, z: 0}
-  m_LocalScale: {x: 0.115222275, y: 0.108627245, z: 1}
+  m_LocalPosition: {x: -12.3001, y: 3.3212, z: 0}
+  m_LocalScale: {x: 0.07592751, y: 0.07200777, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -534,3 +536,29 @@ PolygonCollider2D:
       - {x: -16.800001, y: -0.06666667}
       - {x: -16.800001, y: 0.06666667}
       - {x: -17, y: 0.26666668}
+--- !u!114 &-2365672175920855053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7620159062514109889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc24761b5a3991a45a49a10d1e7c7300, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroy: {fileID: 8300000, guid: 6211029fad1d01048840ae6ecdc3ed3e, type: 3}
+  smallAsteroid: {fileID: 3770589343343610147, guid: c4d800aa3eb58ef4ebbc019f5a725b67, type: 3}
+--- !u!114 &7068584676103585956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7620159062514109889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e9bd69d85d952d4cb41b2f9c047f087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
