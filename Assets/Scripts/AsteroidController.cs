@@ -29,54 +29,52 @@ public class AsteroidController : MonoBehaviour {
  
     }
  
-    private void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D collision)
     {
  
-        if (other.gameObject.tag.Equals("Bullet")) 
+        if (collision.gameObject.tag == ("Bullet")) 
         {
- 
-            // Destroy the bullet
-            Destroy (other.gameObject);
+            //Destroy bullet
+            Destroy (collision.gameObject);
 
-        // If large asteroid spawn new ones
+            //If bullet hits large asteroid
             if (tag.Equals ("Large Asteroid")) 
             {
-                // Spawn small asteroids
-                Instantiate (smallAsteroid,
-                    new Vector3 (transform.position.x - .5f,
-                        transform.position.y - .5f, 0),
-                        Quaternion.Euler (0, 0, 90));
- 
-                // Spawn small asteroids
-                Instantiate (smallAsteroid,
-                    new Vector3 (transform.position.x + .5f,
-                        transform.position.y + .0f, 0),
-                        Quaternion.Euler (0, 0, 0));
- 
-                // Spawn small asteroids
-                Instantiate (smallAsteroid,
-                    new Vector3 (transform.position.x + .5f,
-                        transform.position.y - .5f, 0),
-                        Quaternion.Euler (0, 0, 270));
- 
-                gameController.SplitAsteroid (); // +2
- 
-            } else {
-                // Just a small asteroid destroyed
+                //Spawns small asteroids
+                CreateSplit();
+
+                gameController.SplitAsteroid ();
+            }
+            else
+            {
                 gameController.DecrementAsteroids();
             }
- 
-            // Play a sound
             AudioSource.PlayClipAtPoint(
                 destroy, Camera.main.transform.position);
  
-            // Add to the score
             gameController.IncrementScore();
  
-            // Destroy the current asteroid
             Destroy (gameObject);
         }
         
  
+    }
+    private void CreateSplit()
+    {
+        //Spawn small asteroid
+        Instantiate (smallAsteroid,
+            new Vector3 (transform.position.x - .5f,
+                transform.position.y - .5f, 0),
+                Quaternion.Euler (0, 0, 90));
+        
+        Instantiate (smallAsteroid,
+            new Vector3 (transform.position.x + .5f,
+                transform.position.y + .0f, 0),
+                Quaternion.Euler (0, 0, 0));
+        
+        Instantiate (smallAsteroid,
+            new Vector3 (transform.position.x + .5f,
+                transform.position.y - .5f, 0),
+                Quaternion.Euler (0, 0, 270));
     }
 } 

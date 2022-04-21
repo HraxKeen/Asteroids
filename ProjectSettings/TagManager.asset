@@ -10,6 +10,7 @@ TagManager:
   - Large Asteroid
   - Large Asteroids
   - Small Asteroids
+  - trail
   layers:
   - Default
   - TransparentFX

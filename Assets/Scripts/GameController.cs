@@ -5,13 +5,14 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour {
  
     public GameObject asteroid;
+    public GameObject ship;
  
     private int score;
     private int hiscore;
     private int asteroidsRemaining;
     private int lives;
     private int wave;
-    private int increaseEachWave = 2;
+    private int increaseEachWave = 3;
  
     public Text scoreText;
     public Text livesText;
@@ -44,7 +45,7 @@ public class GameController : MonoBehaviour {
         hiscoreText.text = "HISCORE: " + hiscore;
         livesText.text = "LIVES: " + lives;
         waveText.text = "WAVE: " + wave;
- 
+
         SpawnAsteroids();
     }
  
@@ -52,16 +53,15 @@ public class GameController : MonoBehaviour {
  
         DestroyExistingAsteroids();
  
-        // Decide how many asteroids to spawn
-        // If any asteroids left over from previous game, subtract them
+        //How many asteroids to spawn
         asteroidsRemaining = (wave * increaseEachWave);
  
         for (int i = 0; i < asteroidsRemaining; i++) {
  
             // Spawn an asteroid
             Instantiate(asteroid,
-                new Vector3(Random.Range(-9.0f, 9.0f),
-                    Random.Range(-6.0f, 6.0f), 0),
+                new Vector3(Random.Range(-12.0f, 12.0f),
+                Random.Range(-8.0f, 8.0f), 0),
                 Quaternion.Euler(0,0,Random.Range(-0.0f, 359.0f)));
  
         }
@@ -82,9 +82,9 @@ public class GameController : MonoBehaviour {
             PlayerPrefs.SetInt ("hiscore", hiscore);
         }
  
-        // Has player destroyed all asteroids?
-        if (asteroidsRemaining < 1) {
- 
+        //Destroyed all asteroids?
+        if (asteroidsRemaining < 1) 
+        {
             // Start next wave
             wave++;
             SpawnAsteroids();
@@ -99,6 +99,7 @@ public class GameController : MonoBehaviour {
         // Has player run out of lives?
         if (lives < 1) {
             // Restart the game
+            
             BeginGame();
         }
     }
