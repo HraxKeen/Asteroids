@@ -1,8 +1,9 @@
 using UnityEngine;
 using System.Collections;
  
-public class AsteroidController : MonoBehaviour {
- 
+public class AsteroidController : MonoBehaviour 
+{
+    public ParticleSystem explosion;
     public AudioClip destroy;
     public GameObject smallAsteroid;
  
@@ -41,7 +42,9 @@ public class AsteroidController : MonoBehaviour {
             if (tag.Equals ("Large Asteroid")) 
             {
                 //Spawns small asteroids
+                Explosion();
                 CreateSplit();
+                
 
                 gameController.SplitAsteroid ();
             }
@@ -53,7 +56,7 @@ public class AsteroidController : MonoBehaviour {
                 destroy, Camera.main.transform.position);
  
             gameController.IncrementScore();
- 
+
             Destroy (gameObject);
         }
         
@@ -76,5 +79,9 @@ public class AsteroidController : MonoBehaviour {
             new Vector3 (transform.position.x + .5f,
                 transform.position.y - .5f, 0),
                 Quaternion.Euler (0, 0, 270));
+    }
+    void Explosion()
+    {
+        explosion.Play();
     }
 } 

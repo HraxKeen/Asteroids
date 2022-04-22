@@ -11,6 +11,8 @@ TagManager:
   - Large Asteroids
   - Small Asteroids
   - trail
+  - Explosion
+  - StartGameButton
   layers:
   - Default
   - TransparentFX

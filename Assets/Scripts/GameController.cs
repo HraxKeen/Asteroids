@@ -100,6 +100,7 @@ public class GameController : MonoBehaviour {
         if (lives < 1) {
             // Restart the game
             
+            
             BeginGame();
         }
     }
